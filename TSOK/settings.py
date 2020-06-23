@@ -75,7 +75,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'USER': 'postgres',
         'PASSWORD': 'WER2005!',
-        'HOST': 'localhost',
     }
 }
 
@@ -121,7 +120,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # end static
 
 import dj_database_url
-db_from_env = dj_database_url.config
+db_from_env = dj_database_url.config()
+DATABASES['default'].update()
 
 # media
 MEDIA_URL = '/media/'
