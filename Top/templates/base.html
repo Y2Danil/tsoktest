@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'Top/style2.css' %}">
+  <meta charset="UTF-8">
+  <title>{% block title %}Главное{% endblock %}</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-lg-3 navbar-container bg-light">
+        <!-- Вертикальное меню -->
+        <nav class="navbar navbar-expand-md navbar-light header">
+          <h1 class='TSOK'>
+            <a href="{% url 'blog:index' %}" style='color: black;'>
+              TOP SLUT OF <div class='Kamch'>KAMCHATKA</div>
+            </a>
+          </h1>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <!-- Пункты вертикального меню -->
+            <ul class="navbar-nav">
+              <li class="nav-item rubric_header">
+                <a href="{% url 'login'%}?next={{request.path}}" class="nav-link">Вход</a>
+              </li>
+              <li class="nav-item rubric_header">
+                <a href="{% url 'blog:register' %}" class="nav-link">Регестрация</a>
+              </li>
+              <li class="nav-item rubric_header">
+                <a href="{% url 'logout'%}?next={{request.path}}" class="nav-link">Выход</a>
+              </li>
+              <li class="nav-item search">
+               <form action="{% url 'blog:poisck' %}" method="POST" class='form_poisck float-left float-sm-left float-md-left' style='display: flex;'>
+                {% csrf_token %}
+                <input class='poisck_input' type="text" name='poisck' placeholder="Поиск">
+                <button type="submit" class='buttom_search'>
+                  <a href="#" class=''>
+                    <img src='{% static "image/search.png" %}' alt="Картинка" class='img_search'>
+                  </a>
+                </button>
+                <script>
+                  jQuery('base.html').ready(function(){
+                    $('.buttom_search').on('click', function(){
+                      let poisck_input = $('.poisck_input').val();
+                      if(poisck_input == ''){
+                        $('.buttom_search').removeAttr('type');
+                        $('.buttom_search').attr('type', 'button');
+                        alert('Строка пустая!');
+                      }else{
+                        $('.buttom_search').removeAttr('type');
+                        $('.buttom_search').attr('type', 'submit');
+                      }
+                    });
+                  });
+                </script>
+               </form>
+              </li>
+              {% if Rubrics %}
+              <li class="nav_item nav_item-dropdown">
+                <div class="dropdown">
+                  <button class="dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Рубрики
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="about-us">
+                    {% for Rubric in Rubrics %}
+                      <a href="{% url 'blog:by_rubric' Rubric.id %}" class="dropdown-item">{{ Rubric.name }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </li>
+              {% else %}
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-md-8 col-lg-9 content-container">
+        {% block content %}
+            
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js/1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script type='text/javascript' src='{% static "js/TSOK.js" %}'></script>
+</body>
+</html>

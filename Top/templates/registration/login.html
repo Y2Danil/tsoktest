@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class='author'>
+{% if form.errors %}
+  <p>Ничё не получается =(</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Вашей учётной записи не существует, идите нахуй!</p>
+  {% else %}
+    <p>Авторизация</p>
+  {% endif %}
+  
+{% endif %}
+
+<form action="" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type='submit'>Войти</button>
+</form>
+
+{% endblock %}

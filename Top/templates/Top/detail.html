@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ Article.title }}
+{% endblock %}
+
+{% block content %}
+<style>
+  .Article_text {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .Article_title {
+    font-weight: 600;
+  }
+  .detail_width_img {
+    margin: auto;
+  }
+</style>
+
+
+<div class=''>
+  <p class='p_rubric'>Рубрика - <a href="{% url 'blog:by_rubric' Article.rubric.id %}">{{ Article.rubric.name }}</a></p>
+  <hr>
+  <h1>{{ Article.title }}</h1>
+  <hr>
+  {% if Article.image %}
+  <div style='max-width: 650px; ' class='detail_width_img'>
+    <img src="{{ Article.image.url }}" alt="Картинка" style='padding-left: 0; width: 100%;' class=''>
+  </div>
+  {% else %}
+  <div style='max-width: 650px; ' class='detail_width_img'></div>
+  {% endif %}
+  <p>{{ Article.published_date }}</p>
+  <p class='Article_text'>{{ Article.text }}</p>
+
+
+  {% if user.is_authenticated %}
+  <form action="{% url 'blog:list_comment' Article.id %}" method="POST">
+    {% csrf_token %}
+
+    <textarea name='text_comment' placeholder="Ваш комментарий" required cols='30' rows='5'></textarea><br>
+    <button type="submit">Отправить</button>
+  </form>
+  {% else %}
+    <h2>
+      <a href="{% url 'login'%}?next={{request.path}}">Войдите чтобы оставлять комменты</a>
+    </h2>
+  {% endif %}
+
+  <h2>Комметарии:</h2>
+  <div>
+    {% if Comments %}
+      {% for Comment in Comments %}
+        {% if Comment.author == 'Admin' %}
+        <div>
+          <strong style='color: rgb(0, 0, 0); font-weight: 800; font-size: 18px;'>{{ Comment.author }}</strong>
+          <p style='font-weight: 600;'>{{ Comment.comment_text }}</p>
+        </div>
+        {% else %}
+        <div>
+          <strong>{{ Comment.author }}</strong>
+          <p>{{ Comment.comment_text }}</p>
+        </div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      Комментов нет =(
+    {% endif %}
+  </div>
+
+
+
+</div>
+{% endblock %}
