@@ -6,6 +6,7 @@ chardet==3.0.4
 colorama==0.4.3
 decouple==0.0.7
 dj-database-url==0.5.0
+dj-static==0.0.6
 Django==3.0.6
 django-grappelli==2.14.2
 docutils==0.16
@@ -31,6 +32,7 @@ requests==2.23.0
 six==1.15.0
 soupsieve==2.0.1
 sqlparse==0.3.1
+static3==0.7.0
 toml==0.10.1
 typed-ast==1.4.1
 ujson==1.35
