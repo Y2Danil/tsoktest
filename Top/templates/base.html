@@ -40,7 +40,7 @@
               <li class="nav-item search">
                <form action="{% url 'blog:poisck' %}" method="POST" class='form_poisck float-left float-sm-left float-md-left' style='display: flex;'>
                 {% csrf_token %}
-                <input class='poisck_input' type="text" name='poisck' :placeholder="poisck_text" v-on:input='poisck_text = $event.target.value'>
+                <input class='poisck_input' type="text" name='poisck' placeholder="Поиск" >
                 <button type="submit" class='buttom_search'>
                   <a href="#" class=''>
                     <img src='{% static "image/search.png" %}' alt="Картинка" class='img_search'>
