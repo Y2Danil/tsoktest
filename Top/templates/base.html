@@ -10,6 +10,8 @@
   <title>{% block title %}Главное{% endblock %}</title>
 </head>
 <body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
+
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-4 col-lg-3 navbar-container bg-light">
@@ -38,7 +40,7 @@
               <li class="nav-item search">
                <form action="{% url 'blog:poisck' %}" method="POST" class='form_poisck float-left float-sm-left float-md-left' style='display: flex;'>
                 {% csrf_token %}
-                <input class='poisck_input' type="text" name='poisck' placeholder="Поиск">
+                <input class='poisck_input' type="text" name='poisck' :placeholder="poisck_text" v-on:input='poisck_text = $event.target.value'>
                 <button type="submit" class='buttom_search'>
                   <a href="#" class=''>
                     <img src='{% static "image/search.png" %}' alt="Картинка" class='img_search'>

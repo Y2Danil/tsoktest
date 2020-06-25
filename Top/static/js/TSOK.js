@@ -6,6 +6,10 @@ jQuery('base.html').ready(function(){
     });
   });
 });
-
-jQuery('list.html').ready(function(){
+ 
+new Vue ({
+  el: '.poisck_input',
+  data: {
+    poisck_text: ''
+  },
 });
