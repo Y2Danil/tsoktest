@@ -117,7 +117,7 @@ USE_TZ = True
 
 # static
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # end static
 
 db_from_env = dj_database_url.config()
@@ -125,7 +125,7 @@ DATABASES['default'].update(db_from_env)
 
 # media
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # end media
 
 LOGIN_REDIRECT_URL = '/'
