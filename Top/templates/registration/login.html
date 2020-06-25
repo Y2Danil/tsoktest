@@ -1,25 +1,35 @@
 {% extends "base.html" %}
 
+<style>
+  div.author {
+    margin: auto;
+  }
+</style>
+
 {% block content %}
 
-<div class='author'>
-{% if form.errors %}
-  <p>Ничё не получается =(</p>
-{% endif %}
+  <div class='login author col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6'>
 
-{% if next %}
-  {% if user.is_authenticated %}
-    <p>Вашей учётной записи не существует, идите нахуй!</p>
-  {% else %}
-    <p>Авторизация</p>
+  <h1>Login</h1>
+    
+  {% if form.errors %}
+    <p>Ничё не получается =(</p>
   {% endif %}
-  
-{% endif %}
 
-<form action="" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type='submit'>Войти</button>
-</form>
+  <!--{% if next %}
+    {% if user.is_authenticated %}
+      <p>Вашей учётной записи не существует, идите нахуй)</p>
+    {% else %}
+      <p>Авторизация</p>
+    {% endif %}
+    
+  {% endif %}-->
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Войти</button>
+  </form>
+  </div>
 
 {% endblock %}
