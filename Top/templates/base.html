@@ -19,15 +19,46 @@
         <nav class="navbar navbar-expand-md navbar-light header">
           <h1 class='TSOK'>
             <a href="{% url 'blog:index' %}" style='color: black;'>
-              TOP SLUT OF <div class='Kamch'>KAMCHATKA</div>
+              TOP SLUTS OF <div class='Kamch'>KAMCHATKA</div>
             </a>
-          </h1>
+          </h1><br>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbar">
             <!-- Пункты вертикального меню -->
             <ul class="navbar-nav">
+              <li class="nav-item search">
+                <form action="{% url 'blog:poisck' %}" method="POST" class='form_poisck float-left float-sm-left float-md-left' style='display: flex;'>
+                 {% csrf_token %}
+                 <input class='poisck_input' type="text" name='poisck' placeholder="Поиск" >
+                 <button type="submit" class='buttom_search'>
+                   <a href="#" class=''>
+                     <img src='{% static "image/search.png" %}' alt="Картинка" class='img_search'>
+                   </a>
+                 </button>
+                 <script>
+                   jQuery('base.html').ready(function(){
+                     $('.buttom_search').on('click', function(){
+                       let poisck_input = $('.poisck_input').val();
+                       if(poisck_input == ''){
+                         $('.buttom_search').removeAttr('type');
+                         $('.buttom_search').attr('type', 'button');
+                         alert('Строка пустая!');
+                       }else{
+                         $('.buttom_search').removeAttr('type');
+                         $('.buttom_search').attr('type', 'submit');
+                       }
+                     });
+                   });
+                 </script>
+                </form>
+               </li>
+              {% if user.is_superuser %}
+                <li class="nav-item rubric_header admin">
+                  <a href="{% url 'admin:index' %}" class='nav-link'>Админка</a>
+                </li>
+              {% endif %}
               <li class="nav-item rubric_header">
                 <a href="{% url 'login'%}?next={{request.path}}" class="nav-link">Вход</a>
               </li>
@@ -37,34 +68,8 @@
               <li class="nav-item rubric_header">
                 <a href="{% url 'logout'%}?next={{request.path}}" class="nav-link">Выход</a>
               </li>
-              <li class="nav-item search">
-               <form action="{% url 'blog:poisck' %}" method="POST" class='form_poisck float-left float-sm-left float-md-left' style='display: flex;'>
-                {% csrf_token %}
-                <input class='poisck_input' type="text" name='poisck' placeholder="Поиск" >
-                <button type="submit" class='buttom_search'>
-                  <a href="#" class=''>
-                    <img src='{% static "image/search.png" %}' alt="Картинка" class='img_search'>
-                  </a>
-                </button>
-                <script>
-                  jQuery('base.html').ready(function(){
-                    $('.buttom_search').on('click', function(){
-                      let poisck_input = $('.poisck_input').val();
-                      if(poisck_input == ''){
-                        $('.buttom_search').removeAttr('type');
-                        $('.buttom_search').attr('type', 'button');
-                        alert('Строка пустая!');
-                      }else{
-                        $('.buttom_search').removeAttr('type');
-                        $('.buttom_search').attr('type', 'submit');
-                      }
-                    });
-                  });
-                </script>
-               </form>
-              </li>
               {% if Rubrics %}
-              <li class="nav_item nav_item-dropdown">
+              <li class="nav_item rubric_header nav_item-dropdown">
                 <div class="dropdown">
                   <button class="dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Рубрики

@@ -6,8 +6,8 @@ from django.utils import timezone
 class Article(models.Model):
   image = models.ImageField('Картинка', upload_to='images/', null=True, blank=True)
   rubric = models.ForeignKey('Rubric', null=True, on_delete=models.PROTECT, verbose_name='Рубрика')
-  create_author = models.CharField('Автор идеи', max_length=100)
-  title = models.CharField('Название статьи', max_length=200)
+  create_author = models.TextField('Автор идеи', max_length=100, blank=True, null=True)
+  title = models.TextField('Название статьи', max_length=48, blank=True, null=True)
   text = models.TextField('Текст статьие', blank=True, null=True)
   created_date = models.DateTimeField(db_index=True, auto_now_add=True)
   published_date = models.DateTimeField(blank=True, null=True, db_index=True, auto_now_add=True)
@@ -41,7 +41,7 @@ class Comment(models.Model):
     return self.author
   
 class Rubric(models.Model):
-  name = models.TextField('Название', max_length=30, db_index=True)
+  name = models.TextField('Название', max_length=30, db_index=True, unique=True)
   
   def __str__(self):
     return self.name
