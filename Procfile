@@ -1,1 +1,1 @@
-web: gunicorn Django_projects_2/TSOK.wsgi --log-file -
+web: gunicorn TSOK.wsgi --log-file -
