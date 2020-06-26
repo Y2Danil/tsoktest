@@ -11,18 +11,64 @@
     font-weight: 600;
   }
   .Article_title {
-    font-weight: 600;
+    font-weight: 700;
+    color: #000;
+    font-size: 35px;
   }
   .detail_width_img {
     margin: auto;
+  }
+  .detail_pub_date {
+    font-size: 15px;
+    color: #222;
+    padding-top: 5px;
+    margin-bottom: -2px;
+  }
+  .detail-bottom-hr {
+    margin-bottom: 20px;
+  }
+  .comments {
+    max-height: 500px;
+    overflow: scroll;
+    overflow-x: none;
+  }
+  .comment {
+    padding-left: 5px;
+    padding-right: 5px;
+    border-bottom-width: 1px;
+    border-bottom-style: ridge;
+  }
+  .comment:hover {
+    padding-left: 3px;
+    padding-right: 3px;
+    width: 100%;
+  }
+  .comment:nth-of-type(2n) {
+    background: #fdfdfd;
+  } 
+  .comment:nth-of-type(3n) {
+    background: #f9f9f9;
+  } 
+  .comment:nth-of-type(1) {
+    background: #f9f9f9;
+  } 
+  .comment:nth-of-type(2n):hover {
+    background: #dadada;
+  } 
+  .comment:nth-of-type(3n):hover {
+    background: #dfdfdf;
+  } 
+  .comment:nth-of-type(1):hover{
+    background: #dfdfdf;
   }
 </style>
 
 
 <div class=''>
+<div class=''>
   <p class='p_rubric'>Рубрика - <a href="{% url 'blog:by_rubric' Article.rubric.id %}">{{ Article.rubric.name }}</a></p>
   <hr>
-  <h1>{{ Article.title }}</h1>
+  <h1 class='Article_title col-12'>{{ Article.title }}</h1>
   <hr>
   {% if Article.image %}
   <div style='max-width: 650px; ' class='detail_width_img'>
@@ -31,15 +77,16 @@
   {% else %}
   <div style='max-width: 650px; ' class='detail_width_img'></div>
   {% endif %}
-  <p>{{ Article.published_date }}</p>
-  <p class='Article_text'>{{ Article.text }}</p>
-
+  <p class='detail_pub_date'>{{ Article.published_date }}</p>
+  <hr style='margin-top: 10px; margin-bottom: 15px; background-color: #555;'>
+    <p class='Article_text'>{{ Article.text }}</p>
+  <hr style='margin-top: 10px; margin-bottom: 15px; background-color: #555;'>
 
   {% if user.is_authenticated %}
   <form action="{% url 'blog:list_comment' Article.id %}" method="POST">
     {% csrf_token %}
 
-    <textarea name='text_comment' placeholder="Ваш комментарий" required cols='30' rows='5'></textarea><br>
+    <textarea name='text_comment' placeholder="Ваш комментарий" required cols='30' rows='3' style='width: 100%;'></textarea><br>
     <button type="submit">Отправить</button>
   </form>
   {% else %}
@@ -50,16 +97,16 @@
 
   <h2>Комметарии:</h2>
   <hr>
-  <div>
+  <div class='col-12 comments'>
     {% if Comments %}
       {% for Comment in Comments %}
-        {% if Comment.author == 'Admin' %}
-        <div>
+        {% if user.is_authenticated %}
+        <div class='comment'>
           <strong style='color: rgb(0, 0, 0); font-weight: 800; font-size: 18px;'>{{ Comment.author }}</strong>
           <p style='font-weight: 600;'>{{ Comment.comment_text }}</p>
         </div>
         {% else %}
-        <div>
+        <div class='comment'>
           <strong>{{ Comment.author }}</strong>
           <p>{{ Comment.comment_text }}</p>
         </div>
@@ -69,9 +116,9 @@
       Комментов нет =(
     {% endif %}
   </div>
-  <hr>
+  <hr class='detail-bottom-hr'>
 
 
-
+</div>
 </div>
 {% endblock %}
