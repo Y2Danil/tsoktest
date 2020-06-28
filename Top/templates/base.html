@@ -14,7 +14,7 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4 col-lg-3 navbar-container bg-light">
+      <div class="col-lg-3 col-xl-3 navbar-container bg-light">
         <!-- Вертикальное меню -->
         <nav class="navbar navbar-expand-md navbar-light header">
           <h1 class='TSOK'>
@@ -74,7 +74,7 @@
                   <button class="dropdown-toggle" type="button" id="about-us" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Рубрики
                   </button>
-                  <div class="dropdown-menu" aria-labelledby="about-us">
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="about-us">
                     {% for Rubric in Rubrics %}
                       <a href="{% url 'blog:by_rubric' Rubric.id %}" class="dropdown-item">{{ Rubric.name }}</a>
                     {% endfor %}
@@ -87,7 +87,7 @@
           </div>
         </nav>
       </div>
-      <div class="col-md-8 col-lg-9 content-container">
+      <div class="col-lg-9 col-xl-9 content-container">
         {% block content %}
             
         {% endblock %}

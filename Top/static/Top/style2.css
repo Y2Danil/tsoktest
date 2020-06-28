@@ -35,6 +35,10 @@ h1 > a {
   padding-top: 0;
 }
 
+.header h1 > a {
+  text-decoration: none;
+}
+
 .navbar-container {
   margin-bottom: 10px;
 }
@@ -46,10 +50,7 @@ ul > .nav-item {
 ul > li.admin {
   position: relative;
   bottom: 0;
-  margin-bottom: 0;
-  padding-bottom: 0;
 }
-
 /*.header {
   width: 100%;
 }
@@ -125,6 +126,7 @@ ul > li.admin {
   color: #000;
   position: absolute;
   bottom: 0;
+  font-size: .92em;
 }
 
 .article_rubric > a {
@@ -321,13 +323,68 @@ ul > li.admin {
   margin-left: 2px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .Article {
     margin: auto;
+    height: 400px;
+    position: relative;
+  }
+  .Article img {
+    max-height: 300px;
+  }
+  .nav_item-dropdown {
+    margin-left: 0px !important;
   }
 }
 
 @media (min-width: 768px) {
+  .Article {
+    height: auto;
+    position: relative;
+  }
+  .Article img {
+    max-height: 250px;
+  }
+  .Article {
+    margin-left: 15px;
+    margin-bottom: 15px;
+    height: 350px;
+  }
+  .poisck_input {
+    width: 130px;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+  .header {
+    width: 100%
+  }
+  #navbar {
+    padding-right: 0;
+  }
+  #navbar > ul {
+    text-align: right !important;
+    margin: auto;
+    margin-right: 0;
+  }
+  li.nav-item > form {
+    margin-top: 7px;
+  }
+  .nav_item-dropdown {
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 992px) {
+  .Article {
+    height: 350px;
+  }
+  .Article img {
+    max-height: 250px;
+  }
+}
+
+@media screen and (min-width: 992px) {
   .navbar-container {
     position: sticky;
     top: 0;
@@ -352,44 +409,19 @@ ul > li.admin {
   .navbar-container .navbar-nav {
     flex-direction: column !important;
   }
-  .navbar-container ul {
-    position: relative;
-    right: 10px;
-  }
-  .navbar-container ul form {
-    position: relative;
-    left: 8px;
-  }
-  .navbar-container ul form input {
-    width: 165px;
-  }
-  ul.navbar-nav > li.nav-item {
-    margin-top: 2px !important;
-    margin-bottom: 2px !important;
-  }
-  .TSOK {
-    position: relative;
-    right: 2px;
-  }
-
   .nav_item-dropdown {
     position: relative;
     left: 1px;
     top: 5px;
     border: none !important;
-    outline: none !important;
   }
-  .article_img {
-    width: 100%;
+  .TSOK {
+    position: relative;
+    right: 2px;
+  } 
+  ul > *  {
+    text-align: left;
   }
-  .Article {
-    margin-left: 15px;
-    margin-bottom: 15px;
-    height: 340px;
-  }
-}
-
-@media (min-width: 992px) {
 }
 
 @media (max-width: 1200px) {
@@ -399,10 +431,28 @@ ul > li.admin {
 }
 
 @media (min-width: 1200px) {
+  .Article img {
+    max-height: 250px;
+  }
+  .Article {
+    height: 310px;
+  }
 }
 
 @media (min-width: 1365px) {
+  .Article img {
+    max-height: 260px;
+  }
+  .Article {
+    height: 320px;
+  }
 }
 
 @media (min-width: 1500px) {
+  .Article img {
+    max-height: 270px;
+  }
+  .Article {
+    height: 320px;
+  }
 }
