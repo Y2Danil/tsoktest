@@ -227,6 +227,16 @@ ul > li.admin {
   padding-left: 4px;
 }
 
+.register form input::-moz-placeholder {
+  font-size: 14px;
+  padding-left: 4px;
+}
+
+.register form input::-webkit-input-placeholder {
+  font-size: 14px;
+  padding-left: 4px;
+}
+
 .register form input {
   border: none;
   border-bottom: 2px solid #555;
@@ -292,6 +302,16 @@ ul > li.admin {
 }
 
 .login form input::placeholder {
+  font-size: 15px;
+  padding-left: 4px;
+}
+
+.login form input::-moz-placeholder {
+  font-size: 15px;
+  padding-left: 4px;
+}
+
+.login form input::-webkit-input-placeholder {
   font-size: 15px;
   padding-left: 4px;
 }
@@ -381,6 +401,20 @@ ul > li.admin {
   }
   .Article img {
     max-height: 280px;
+  }
+  .nav-item:not(.search) {
+    position: relative;
+    right: 10px;
+  }
+  .nav_item-dropdown {
+    margin-left: -3px;
+  }
+  .search {
+    margin-left: -1px;
+    margin-bottom: 3px;
+  }
+  .TSOK {
+    margin-bottom: 20px;
   }
 }
 
