@@ -339,11 +339,11 @@ ul > li.admin {
 
 @media (min-width: 768px) {
   .Article {
-    height: auto;
+    height: 430px;
     position: relative;
   }
   .Article img {
-    max-height: 250px;
+    max-height: 330px;
   }
   .Article {
     margin-left: 15px;
@@ -377,10 +377,10 @@ ul > li.admin {
 
 @media (min-width: 992px) {
   .Article {
-    height: 350px;
+    height: 400px;
   }
   .Article img {
-    max-height: 250px;
+    max-height: 280px;
   }
 }
 
@@ -435,7 +435,7 @@ ul > li.admin {
     max-height: 250px;
   }
   .Article {
-    height: 310px;
+    height: 320px;
   }
 }
 
