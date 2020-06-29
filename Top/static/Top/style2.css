@@ -108,14 +108,14 @@ ul > li.admin {
 }
 
 .article_title {
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: 600;
   color: #000;
   text-decoration: none !important;
   overflow: hidden;
   width: 100%;
   max-height: 51px;
   text-overflow: ellipsis;
-
 }
 
 .article_title:hover {
@@ -346,11 +346,11 @@ ul > li.admin {
 @media (max-width: 768px) {
   .Article {
     margin: auto;
-    height: 440px;
+    height: 460px;
     position: relative;
   }
   .Article img {
-    max-height: 330px;
+    max-height: 370px;
   }
   .nav_item-dropdown {
     margin-left: 0px !important;
@@ -359,7 +359,7 @@ ul > li.admin {
 
 @media (min-width: 768px) {
   .Article {
-    height: 500px;
+    height: 520px;
     position: relative;
   }
   .Article img {
@@ -398,6 +398,7 @@ ul > li.admin {
 @media (min-width: 992px) {
   .Article {
     height: 380px;
+    margin-bottom: 20px !important;
   }
   .Article img {
     max-height: 280px;
@@ -459,9 +460,6 @@ ul > li.admin {
 }
 
 @media (max-width: 1200px) {
-  .Article {
-    margin-bottom: 10px !important;
-  }
 }
 
 @media (min-width: 1200px) {

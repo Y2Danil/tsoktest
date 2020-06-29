@@ -9,21 +9,25 @@
     color: rgba(0, 255, 234, 0.733);
     text-align: center;
   }
+  .by_rubric_hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
 </style>
 
   <p style='margin-bottom: -5px;'>Рубрика - <span style='font-weight: 600;'>{{ current_rubric }}</span></p>
-  <hr>
+  <hr class='by_rubric_hr'>
   <section class='row'>
   {% if Articles %}
     {% for Article in Articles %}
-            <article class='Article col-11 col-sm-11 col-md-5 col-lg-5 col-xl-3'>
-              <div clas='scale div_img pr-0'>
-                <img src="{{ Article.image.url }}" alt="Картинка" class='article_img scale col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-              </div>
-              <h2 class='article_title'><a href='{% url "blog:detail" Article.id %}' class='article_title'>{{ Article.title }}</a></h2>
-              <p>{{ Article.published_date|date:"d.m.Y" }}</p>
-              <p class='article_rubric'><a href="#">Рубрика: {{ Article.rubric.name }}</a></p>
-            </article>
+    <article class='Article col-8 col-sm-8 col-md-5 col-lg-5 col-xl-3'>
+      <div clas='scale div_img pr-0'>
+        <img src="{{ Article.image.url }}" alt="Картинка" class='article_img scale col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
+      </div>
+      <h2 class='article_title'><a href='{% url "blog:detail" Article.id %}' class='article_title'>{{ Article.title }}</a></h2>
+      <p>{{ Article.published_date|date:"d.m.Y" }}</p>
+      <p class='article_rubric'><a href="#">Рубрика: {{ Article.rubric.name }}</a></p>
+    </article>
     {% endfor %}
   {% else %}
     <h1 class='No_article_h1 display-1'>Статьи не найдены =(((</h1>
