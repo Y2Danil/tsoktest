@@ -19,7 +19,7 @@
                 <img src="{{ Article.image.url }}" alt="Картинка" class='article_img scale col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
               </div>
               <h2 class='article_title'><a href='{% url "blog:detail" Article.id %}' class='article_title'>{{ Article.title }}</a></h2>
-              <p>{{ Article.published_date|date:"d.m.Y" }}</p>
+              <p class='article_pub_date'>{{ Article.published_date|date:"d.m.Y" }}</p>
               <p class='article_rubric'><a href="#">Рубрика: {{ Article.rubric.name }}</a></p>
             </article>
     {% endfor %}
