@@ -108,7 +108,7 @@ ul > li.admin {
 }
 
 .article_title {
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: 600;
   color: #000;
   text-decoration: none !important;
@@ -123,16 +123,13 @@ ul > li.admin {
 }
 
 .article_pub_date {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .article_rubric {
-  color: #000;
   position: absolute;
   bottom: 0;
-  font-size: .90em;
   font-weight: 500;
-  margin-bottom: 0;
 }
 
 .article_rubric > a {
@@ -484,9 +481,20 @@ ul > li.admin {
   ul > *  {
     text-align: left;
   }
-  .article_rubric {
-    margin-bottom: 40px;
+  .article_title {
+    font-size: 1.05em;
+    color: #000;
   }
+  
+  .article_pub_date {
+    font-size: .85em;
+    margin-bottom: 80px;
+  }
+  
+  .article_rubric {
+    position: absolute;
+    bottom: 0;
+    font-size: .9em;
 }
 
 @media (max-width: 1200px) {
@@ -497,8 +505,23 @@ ul > li.admin {
     max-height: 250px;
   }
   .Article {
-    height: 335px;
+    height: 380px;
   }
+  .article_title {
+    font-size: 1.05em;
+    color: #000;
+  }
+  
+  .article_pub_date {
+    font-size: .85em;
+    margin-bottom: 80px;
+  }
+  
+  .article_rubric {
+    position: absolute;
+    bottom: 0;
+    font-size: .9em;
+}
 }
 
 @media (min-width: 1365px) {
@@ -506,15 +529,15 @@ ul > li.admin {
     max-height: 260px;
   }
   .Article {
-    height: 330px;
+    height: 350px;
   }
 }
 
 @media (min-width: 1500px) {
   .Article img {
-    max-height: 270px;
+    max-height: 260px;
   }
   .Article {
-    height: 320px;
+    height: 350px;
   }
 }
