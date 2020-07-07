@@ -108,7 +108,7 @@ ul > li.admin {
 }
 
 .article_title {
-  font-size: 16px;
+  font-size: 1.2em;
   font-weight: 600;
   color: #000;
   text-decoration: none !important;
@@ -123,7 +123,7 @@ ul > li.admin {
 }
 
 .article_pub_date {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .article_rubric {
@@ -131,6 +131,8 @@ ul > li.admin {
   position: absolute;
   bottom: 0;
   font-size: .90em;
+  font-weight: 500;
+  margin-bottom: 0;
 }
 
 .article_rubric > a {
@@ -481,6 +483,9 @@ ul > li.admin {
   } 
   ul > *  {
     text-align: left;
+  }
+  .article_rubric {
+    margin-bottom: 40px;
   }
 }
 
