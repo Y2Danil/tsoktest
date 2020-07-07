@@ -250,6 +250,7 @@ ul > li.admin {
   width: 100%;
   padding-left: 4px;
   font-size: 15px;
+  border-radius: 0;
 }
 
 .register form input:focus {
@@ -305,6 +306,7 @@ ul > li.admin {
   margin-left: 0;
   padding-left: 5px;
   font-size: 15px;
+  border-radius: 0;
 }
 
 .login form input::placeholder {

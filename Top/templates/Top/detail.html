@@ -6,8 +6,11 @@
 
 {% block content %}
 <style>
+  .hr_title_bottom {
+    margin-bottom: 10px;
+  }
   .Article_text {
-    font-size: 16px;
+    font-size: 1.45em;
     font-weight: 600;
   }
   .Article_title {
@@ -26,6 +29,12 @@
   }
   .detail-bottom-hr {
     margin-bottom: 20px;
+  }
+  .please_login > a {
+    font-size: 1.2em;
+  }
+  .please_login {
+    margin-bottom: 10px;
   }
   .comments {
     max-height: 500px;
@@ -61,6 +70,16 @@
   .comment:nth-of-type(1):hover{
     background: #dfdfdf;
   }
+  .comment_gend {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 600;
+    border: 2px solid rgba(172, 172, 172, 0.75);
+    border-radius: 5px;
+    color: rgb(40, 40, 40);
+    background-color: rgba(200, 200, 200, 0.75);
+  }
 </style>
 
 
@@ -69,7 +88,7 @@
   <p class='p_rubric'>Рубрика - <a href="{% url 'blog:by_rubric' Article.rubric.id %}">{{ Article.rubric.name }}</a></p>
   <hr>
   <h1 class='Article_title col-12'>{{ Article.title }}</h1>
-  <hr>
+  <hr class='hr_title_bottom'>
   {% if Article.image %}
   <div style='max-width: 650px; ' class='detail_width_img'>
     <img src="{{ Article.image.url }}" alt="Картинка" style='padding-left: 0; width: 100%;' class=''>
@@ -87,10 +106,10 @@
     {% csrf_token %}
 
     <textarea name='text_comment' placeholder="Ваш комментарий" required cols='30' rows='3' style='width: 100%;'></textarea><br>
-    <button type="submit">Отправить</button>
+    <button class='comment_gend' type="submit">Отправить</button>
   </form>
   {% else %}
-    <h2>
+    <h2 class='please_login'>
       <a href="{% url 'login'%}?next={{request.path}}">Войдите чтобы оставлять комменты</a>
     </h2>
   {% endif %}
