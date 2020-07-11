@@ -93,18 +93,30 @@
         {% block content %}
             
         {% endblock %}
-      </div>
-      <footer class='div_footer footer col-12 col-lg-0'>
-        <div class="bg-light footer">
-          <h6>Данный сайт являетя шуточным и не несет цели кого-либо оскорбить!</h6>
-        </div>
-      </footer>
+      </div><br>
+        <footer class='div_footer bg-light col-12 footer'>
+            <h6>Данный сайт являетя шуточным и не несет цели кого-либо оскорбить!</h6>
+        </footer>
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script type='text/javascript'>
+    jQuery('base.html').ready(function(){
+      $('.dropdown-toggle').click(function(){
+        $('.dropdown-toggle').css({
+          'outline': 'none',
+          'border-color': 'none !important'
+        });
+      });
+      $('.register form input').after('<br>');
+      $('.register form input[type=text]').attr('placeholder', "Имя пользователя");
+      $('.register form input[name=password1]').attr('placeholder', "Пароль");
+      $('.register form input[name=password2]').attr('placeholder', "Потвердить пароль");
+    
+      $('.login form input[type=text]').attr('placeholder', "Имя пользователя");
+      $('.login form input[type=password]').attr('placeholder', "Пароль");
+    });
+  </script>
 
 <style>
     /* Шрифты */
@@ -545,10 +557,8 @@ ul > li.admin {
     width: 100%;
     left: 0;
     bottom: 0;
-  }
-  .footer {
-    padding: 14px;
     color: rgb(155, 155, 155);
+    padding: 16px;
   }
   .footer h6 {
     font-weight: 400;
@@ -708,5 +718,11 @@ ul > li.admin {
   }
 }
 </style>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+  
 </body>
 </html>
