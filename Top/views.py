@@ -1,16 +1,18 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import FormView
-from django.shortcuts import render, redirect
-from django.http import Http404, HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
-from .models import Article, Comment, Rubric
-from django.views.generic.base import View
-from django.contrib.auth import logout
-# Опять же, спасибо django за готовую форму аутентификации.
-from django.contrib.auth.forms import AuthenticationForm
 # Функция для установки сессионного ключа.
 # По нему django будет определять, выполнил ли вход пользователь.
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+# Опять же, спасибо django за готовую форму аутентификации.
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic.base import View
+from django.views.generic.edit import FormView
+
+from .forms import RegUserForm
+from .models import Article, Comment, Rubric
+
 
 def index(request):
   Articles = Article.objects.all()
@@ -45,6 +47,37 @@ def detail(request, article_id):
   
   return render(request, 'Top/detail.html', {'Article': a, 'Comments': Comments, 'Rubrics': Rubrics})
 
+def likes_detail(request, article_id):
+  try:
+    a = Article.objects.get( id = article_id );
+  except:
+    raise Http404('404')
+  
+  if request.method == 'POST':
+    if request.user.is_authenticated:
+      user_tags = User.objects.filter(user_like = article_id)
+      current_user = request.user
+      if current_user not in user_tags:
+        try:
+          a.likes += 1
+          a.like_status.add(current_user)
+          a.save()
+            
+          return HttpResponseRedirect(reverse('blog:detail', args=(a.id,)))
+        except:
+          raise Http404('404')
+      else:
+        try:
+          a.likes -= 1
+          a.like_status.remove(current_user)
+          a.save()
+            
+          return HttpResponseRedirect(reverse('blog:detail', args=(a.id,)))
+        except:
+          raise Http404('404')
+    else:
+      return HttpResponseRedirect(reverse('blog:detail', args=(a.id,)))
+
 def list_comment(request, article_id):
   try:
     a = Article.objects.get( id = article_id );
@@ -65,7 +98,7 @@ class RegisterFormView(FormView):
     success_url = '/accounts/login/'
 
     # Шаблон, который будет использоваться при отображении представления.
-    template_name = "Top/register.html"
+    template_name = "registration/register.html"
 
     def form_valid(self, form):
         # Создаём пользователя, если данные в форму были введены корректно.
@@ -73,6 +106,10 @@ class RegisterFormView(FormView):
 
         # Вызываем метод базового класса
         return super(RegisterFormView, self).form_valid(form)
+      
+    #def form_invalid(self, form):
+        #return super(RegisterFormView, self).form_invalid(form)
+        
 
 class LoginFormView(FormView):
     form_class = AuthenticationForm

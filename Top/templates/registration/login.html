@@ -8,28 +8,32 @@
 
 {% block content %}
 
-  <div class='login author col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6'>
+<div class='login author col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6'>
 
-  <h1>Login</h1>
+  <h1 class='login_h1'>Login</h1>
     
   {% if form.errors %}
     <p>Ничё не получается =(</p>
   {% endif %}
 
-  <!--{% if next %}
-    {% if user.is_authenticated %}
-      <p>Вашей учётной записи не существует, идите нахуй)</p>
-    {% else %}
-      <p>Авторизация</p>
-    {% endif %}
-    
-  {% endif %}-->
-
-  <form action="" method="POST">
+  <form action="" method="POST" id='form_login'>
     {% csrf_token %}
     {{ form.as_p }}
     <button type='submit'>Войти</button>
   </form>
-  </div>
+</div>
+
+<script>
+  function login_placholder(){
+    let el = document.getElementById('form_login');
+
+    let el1 = el.getElementsByTagName('input')[1];
+    let el2 = el.getElementsByTagName('input')[2];
+
+    el1.setAttribute('placeholder', 'Ник');
+    el2.setAttribute('placeholder', 'Пароль');
+  }
+  login_placholder()
+</script>
 
 {% endblock %}
