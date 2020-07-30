@@ -9,6 +9,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic.base import View
 from django.views.generic.edit import FormView
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+
 
 from .forms import RegUserForm
 from .models import Article, Comment, Rubric
@@ -87,7 +90,6 @@ def list_comment(request, article_id):
   a.comment_set.create(comment_text = request.POST['text_comment'], author = request.user.username )
   
   return HttpResponseRedirect( reverse('blog:detail', args=(a.id,)) )
-
 
 # Авторизация и Регестрация
 class RegisterFormView(FormView):

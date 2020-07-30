@@ -27,26 +27,6 @@
         {% else %}
         <strong>{{ Article.likes }}</strong> {% endif %}
 
-        <script>
-            window.onload = function() {
-
-            }
-
-            function sex() {
-                let status = true;
-                let div = document.createElement('div');
-                div.innerHTML = `<div class="alert alert-success" role="alert" style='position: absolute; z-index: 2; width: 100%;'>
-                      Пасиб за лайк:)
-                        <button type="button" class="close" data-dismiss="alert" 
-                        aria-label="Закрыть">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>`;
-
-                document.body.prepend(div);
-            }
-        </script>
-
         <hr style='margin-top: 10px; margin-bottom: 15px; background-color: #555;'>
         <p class='Article_text'>{{ Article.text }}</p>
         <hr style='margin-top: 10px; margin-bottom: 15px; background-color: #555;'> {% if user.is_authenticated %}
