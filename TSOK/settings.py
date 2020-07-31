@@ -17,8 +17,8 @@ SECRET_KEY = '3n7s@tna+wx1rhua!_*^+9^$^ir&(&5djdltt2je+jqt=1-44='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
-#ALLOWED_HOSTS = ['.pythonanywhere.com', '127.0.0.1']
+#ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -124,9 +124,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # end static
 #Просто коммент
 
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+#import dj_database_url
+#db_from_env = dj_database_url.config()
+#DATABASES['default'].update(db_from_env)
 
 # media
 MEDIA_URL = '/media/'
