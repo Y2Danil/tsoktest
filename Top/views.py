@@ -18,33 +18,40 @@ from .models import Article, Comment, Rubric
 
 
 def index(request):
-  Articles = Article.objects.all()
-  Rubrics = Rubric.objects.order_by('-id')
-  return render(request, 'Top/list.html', {"Articles": Articles, 'Rubrics': Rubrics})
+  try:
+    Articles = Article.objects.all()
+    Rubrics = Rubric.objects.order_by('-id')
+    return render(request, 'Top/list.html', {"Articles": Articles, 'Rubrics': Rubrics})
+  except:
+    return render(request, 'Top/404.html')
 
 def poisck(request):
   title_poisck = request.POST['poisck']
   try:
     Articles = Article.objects.filter(title = title_poisck)
     Rubrics = Rubric.objects.order_by('-id')
+    
+    return render(request, 'Top/list.html', {"Articles": Articles, 'Rubrics': Rubrics})
   except:
-    raise Http404('Ошибка 404')
-  
-  return render(request, 'Top/list.html', {"Articles": Articles, 'Rubrics': Rubrics})
+    return render(request, 'Top/404.html')
     
 def by_rubric(request, rubric_id):
-  Articles = Article.objects.filter(rubric=rubric_id)
-  Rubrics = Rubric.objects.order_by('-id')
-  current_rubric = Rubric.objects.get(id=rubric_id)
-  context = {'Articles': Articles, 'Rubrics': Rubrics, 'current_rubric': current_rubric}
-  return render(request, 'Top/by_rubric.html', context)
+  try:
+    Articles = Article.objects.filter(rubric=rubric_id)
+    Rubrics = Rubric.objects.order_by('-id')
+    current_rubric = Rubric.objects.get(id=rubric_id)
+    context = {'Articles': Articles, 'Rubrics': Rubrics, 'current_rubric': current_rubric}
+    
+    return render(request, 'Top/by_rubric.html', context)
+  except:
+    return render(request, 'Top/404.html')
 
 def detail(request, article_id):
   try:
     a = Article.objects.get( id = article_id );
     Rubrics = Rubric.objects.all()
   except:
-    raise Http404('Ошибка 404')
+    return render(request, 'Top/404.html')
   
   Comments = a.comment_set.order_by('-pub_date')
   
@@ -54,7 +61,7 @@ def likes_detail(request, article_id):
   try:
     a = Article.objects.get( id = article_id );
   except:
-    raise Http404('404')
+    return render(request, 'Top/404.html')
   
   if request.method == 'POST':
     if request.user.is_authenticated:
@@ -68,7 +75,7 @@ def likes_detail(request, article_id):
             
           return HttpResponseRedirect(reverse('blog:detail', args=(a.id,)))
         except:
-          raise Http404('404')
+          return render(request, 'Top/404.html')
       else:
         try:
           a.likes -= 1
@@ -77,7 +84,7 @@ def likes_detail(request, article_id):
             
           return HttpResponseRedirect(reverse('blog:detail', args=(a.id,)))
         except:
-          raise Http404('404')
+          return render(request, 'Top/404.html')
     else:
       return HttpResponseRedirect(reverse('blog:detail', args=(a.id,)))
 
@@ -85,7 +92,7 @@ def list_comment(request, article_id):
   try:
     a = Article.objects.get( id = article_id );
   except:
-    raise Http404('Ошибка 404')
+    return render(request, 'Top/404.html')
   
   a.comment_set.create(comment_text = request.POST['text_comment'], author = request.user.username )
   

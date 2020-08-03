@@ -1,45 +1,100 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
+<style>
+    .register {
+        margin: auto;
+        width: 80%;
+    }
+    
+    .h1_reg {
+        color: #fdfdfd;
+        font-size: 3em;
+        font-weight: 600;
+    }
+    
+    .reg_hr {
+        width: 23%;
+        background: #fff;
+    }
+    
+    input[name='username'],
+    input[name='password1'],
+    input[name='password2'] {
+        width: 70%;
+        padding: 10px;
+        font-size: 1em;
+        font-weight: 600;
+        color: #ddd;
+        background: rgb(30, 30, 30);
+        border: none;
+        box-shadow: inset 0 0 4px 1px #000;
+    }
+    
+    input:focus {
+        outline: none;
+    }
+    
+    .reg_submit {
+        border: none;
+        background: rgb(20, 20, 20);
+        padding: 10px;
+        box-shadow: inset 0 0 4px 1px #000;
+        transition: .5s;
+        color: #fdfdfd;
+        font-weight: 700;
+    }
+    
+    .reg_submit:hover {
+        box-shadow: inset 0 0 4px 2px #000;
+    }
+</style>
+
 <div class='register col-12 col-sm-10 col-md-10 col-lg-9 col-xl-6' style='margin: auto;'>
-  <h1 class='h1_reg'>Регестрация</h1>
-  <form class='form_register' action="" method="POST" id='form_register'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit'>Зарегестрироваться</button>
-  </form>
+    <h1 class='h1_reg'>Регестрация</h1>
+    <hr class='reg_hr' size='10px'>
+    <form class='form_register' action="" method="POST" id='form_register'>
+        {% csrf_token %} {{ form.as_p }}
+        <button type='submit' class='reg_submit'>Зарегестрироваться</button>
+    </form>
 </div>
 
 <script type='text/javascript'>
-  function del_span_reg(){
-    let el = document.getElementsByTagName('span');
-    let form_reg_ul = document.getElementById('form_register').getElementsByTagName('ul')[0];
-    el[1].remove(); el[2].remove();
-    form_reg_ul.remove();
-  }
-  del_span_reg();
+    function del_span_reg() {
+        let el = document.getElementsByTagName('span');
+        let form_reg_ul = document.getElementById('form_register');
+        let form_ul = form_reg_ul.getElementsByTagName('ul')[0];
+        el[0].remove();
+        el[1].remove();
+        form_ul.remove();
 
-  function append_br_password2(){
-    let el1 = document.getElementsByName('password2')[0];
-    let el2 = document.getElementById('form_register').getElementsByTagName('button')[0];
-    
-    let br = document.createElement('br');
-    el1.after(br);
-    el2.before(br);
-  }
-  append_br_password2();
+        let label = document.getElementsByTagName('label');
+        label[2].remove();
+        label[1].remove();
+        label[0].remove();
+    }
+    del_span_reg();
 
-  function append_placholder(){
-    let el_form = document.getElementById('form_register');
+    function append_br_password2() {
+        let el1 = document.getElementsByName('password2')[0];
+        let el2 = document.getElementById('form_register').getElementsByTagName('button')[0];
 
-    let el1 = el_form.getElementsByTagName('input')[1];
-    let el2 = el_form.getElementsByTagName('input')[2];
-    let el3 = el_form.getElementsByTagName('input')[3];
+        let br = document.createElement('br');
+        el1.after(br);
+        el2.before(br);
+    }
+    append_br_password2();
 
-    el1.setAttribute('placeholder', 'Ник');
-    el2.setAttribute('placeholder', 'Пароль');
-    el3.setAttribute('placeholder', 'Потвердить пароль');
-  }
-  append_placholder()
+    function append_placholder() {
+        let el_form = document.getElementById('form_register');
+
+        let el1 = el_form.getElementsByTagName('input')[1];
+        let el2 = el_form.getElementsByTagName('input')[2];
+        let el3 = el_form.getElementsByTagName('input')[3];
+
+        el1.setAttribute('placeholder', 'Ник');
+        el2.setAttribute('placeholder', 'Пароль');
+        el3.setAttribute('placeholder', 'Потвердить пароль');
+    }
+    append_placholder()
 </script>
 {% endblock %}

@@ -1,70 +1,183 @@
 {% extends "base.html" %} {% block title %} {{ Article.title }} {% endblock %} {% block content %}
 
 <div class=''>
-    <div class=''>
-        <p class='p_rubric'>Рубрика - <a href="{% url 'blog:by_rubric' Article.rubric.id %}">{{ Article.rubric.name }}</a></p>
-        <hr>
-        <h1 class='Article_title col-12'>{{ Article.title }}</h1>
-        <hr class='hr_title_bottom'> {% if Article.image %}
-        <div style='max-width: 650px; ' class='detail_width_img'>
-            <img src="{{ Article.image.url }}" alt="Картинка" style='padding-left: 0; width: 100%;' class=''>
-        </div>
-        {% else %}
-        <div style='max-width: 650px; ' class='detail_width_img'></div>
-        {% endif %}
-        <p class='detail_pub_date'>{{ Article.published_date }}</p>
+    <div class=''></div>
+    <hr>
+    <h1 class='Article_title col-12'>{{ Article.title }}</h1>
+    <hr class='hr_title_bottom'> {% if Article.image %}
+    <div style='max-width: 650px; ' class='detail_width_img'>
+        <img src="{{ Article.image.url }}" alt="Картинка" style='padding-left: 0; width: 100%;' class=''>
+    </div>
+    {% else %}
+    <div style='max-width: 650px; ' class='detail_width_img'></div>
+    {% endif %}
+    <div class="pub_rub">
+        <span class='p_rubric'>Рубрика - <a href="{% url 'blog:by_rubric' Article.rubric.id %}">{{ Article.rubric.name }}</a></span><br>
+        <span class='detail_pub_date'>{{ Article.published_date }}</span>
+    </div>
 
-        {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'blog:likes_detail' Article.id %}" id='detail_likes_form'>
-            {% csrf_token %}
-            <strong class='likes_detail'>{{ Article.likes }}</strong>
-            <button class='a_like_on like_d' type="submit" id='likes_detail_button_submit' onclick="sex()">
-        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'blog:likes_detail' Article.id %}" id='detail_likes_form'>
+        {% csrf_token %}
+        <strong class='likes_detail'>{{ Article.likes }}</strong>
+        <button class='a_like_on like_d' type="submit" id='likes_detail_button_submit'>
+        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-heart svg_like" fill="#ddd" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
         </svg>
       </button>
-        </form>
-        {% else %}
-        <strong>{{ Article.likes }}</strong> {% endif %}
+    </form>
+    {% else %}
+    <strong class='likes_detail'>{{ Article.likes }}</strong> {% endif %}
 
-        <hr style='margin-top: 10px; margin-bottom: 15px; background-color: #555;'>
-        <p class='Article_text'>{{ Article.text }}</p>
-        <hr style='margin-top: 10px; margin-bottom: 15px; background-color: #555;'> {% if user.is_authenticated %}
-        <form action="{% url 'blog:list_comment' Article.id %}" method="POST">
-            {% csrf_token %}
+    <hr style='margin-top: 10px; margin-bottom: 15px; background-color: #555;'>
+    <p class='Article_text'>{{ Article.text }}</p>
+    <hr style='margin-top: 10px; margin-bottom: 15px; background-color: #555;'> {% if user.is_authenticated %}
+    <form action="{% url 'blog:list_comment' Article.id %}" method="POST">
+        {% csrf_token %}
 
-            <textarea name='text_comment' placeholder="Ваш комментарий" required cols='40' rows='5' style='width: 100%;'></textarea><br>
-            <button class='comment_gend' type="submit">Отправить</button>
-        </form>
-        {% else %}
-        <h2 class='please_login'>
-            <a href="{% url 'login'%}?next={{request.path}}">Войдите чтобы оставлять комменты</a>
-        </h2>
-        {% endif %}
+        <textarea name='text_comment' placeholder="Ваш комментарий" required cols='40' rows='5' style='width: 100%;'></textarea><br>
+        <button class='comment_gend' type="submit">Отправить</button>
+    </form><br> {% else %}
+    <h2 class='please_login'>
+        <a href="{% url 'login'%}?next={{request.path}}">Войдите чтобы оставлять комменты</a>
+    </h2><br> {% endif %}
 
-        <h2>Комметарии:</h2>
-        <hr>
-        <div class='col-12 comments'>
-            {% if Comments %} {% for Comment in Comments %} {% if user.is_authenticated %}
-            <div class='comment'>
-                <strong style='color: rgb(0, 0, 0); font-weight: 800; font-size: 1.45em;'>{{ Comment.author }}</strong>
-                <p style='font-weight: 600; font-size: 1.4em;'>{{ Comment.comment_text }}</p>
-            </div>
-            {% else %}
-            <div class='comment'>
-                <strong>{{ Comment.author }}</strong>
-                <p>{{ Comment.comment_text }}</p>
-            </div>
-            {% endif %} {% endfor %} {% else %} Комментов нет =( {% endif %}
+    <h2 class='Commentarii'>Комметарии:</h2>
+    <hr>
+    <div class='col-12 comments'>
+        {% if Comments %} {% for Comment in Comments %} {% if user.is_authenticated %}
+        <div class='comment'>
+            <strong class='author_comment' style='font-weight: 800;'>{{ Comment.author }}</strong>
+            <p class='comment_text' style='font-weight: 500;'>{{ Comment.comment_text }}</p>
         </div>
-        <hr class='detail-bottom-hr'>
-
-
+        {% else %}
+        <div class='comment'>
+            <strong class='author_comment'>{{ Comment.author }}</strong>
+            <p>{{ Comment.comment_text }}</p>
+        </div>
+        {% endif %} {% endfor %} {% else %} <span class='No_comm'>Комментов нет =(</span> {% endif %}
     </div>
+    <hr class='detail-bottom-hr'>
+
+
+</div>
 </div>
 
-
 <style>
+    .p_rubric {
+        color: #ddd;
+        font-size: 1.2em;
+    }
+    
+    @keyframes shadow_a {
+        20% {
+            text-shadow: 0 0 4px rgba(6, 190, 0, 0.6);
+        }
+        40% {
+            text-shadow: 0 0 4px rgba(6, 177, 0, 0.6);
+        }
+        50% {
+            text-shadow: 0 0 8px rgba(6, 194, 0, 0.6);
+        }
+        60% {
+            text-shadow: 0 0 4px rgba(6, 185, 0, 0.6);
+        }
+        80% {
+            text-shadow: 0 0 4px rgba(7, 202, 0, 0.6);
+        }
+    }
+    
+    .p_rubric a {
+        color: rgb(6, 190, 0);
+        animation: shadow_a 6s infinite;
+        text-shadow: 0 0 5px rgba(6, 190, 0, 0.6);
+    }
+    
+    .detail_pub_date {
+        color: #ccc;
+        font-size: .9em;
+    }
+    
+    .Article_title {
+        color: #ddd;
+        font-size: 3.6em;
+        font-weight: 600;
+    }
+    
+    #detail_likes_form {
+        display: flex;
+    }
+    
+    #likes_detail_button_submit {
+        background: none;
+        border: none;
+    }
+    
+    .svg_like {
+        background: none;
+    }
+    
+    .likes_detail {
+        color: #ddd;
+        font-size: 2.4em;
+    }
+    
+    .Article_text {
+        color: #ddd;
+        font-size: 2.1em;
+    }
+    
+    textarea[name='text_comment'] {
+        font-size: 1.4em;
+        background: rgb(30, 30, 30);
+        border: 0;
+        box-shadow: inset 0px 0px 6px 2px #111;
+        color: #ddd;
+        font-weight: 300;
+    }
+    
+    textarea[name='text_comment']:focus {
+        outline: none;
+    }
+    
+    .comment_gend {
+        font-size: 1.4em;
+        background: rgb(30, 30, 30);
+        border: 0;
+        box-shadow: inset 0px 0px 6px 2px #111;
+        color: #ddd;
+        font-weight: 600;
+        width: 100%;
+        transition: .5s;
+        padding: 10px;
+    }
+    
+    .comment_gend:hover {
+        box-shadow: inset 0px 0px 6px 4px #111;
+    }
+    
+    .Commentarii {
+        font-size: 2.2em;
+        font-weight: 600;
+        color: #ddd;
+    }
+    
+    .author_comment {
+        color: #ddd;
+        font-size: 1.6em;
+    }
+    
+    .comment_text {
+        color: #ddd;
+    }
+    
+    .No_comm {
+        font-size: 1.3em;
+        color: #ccc;
+    }
+</style>
+
+<!--style>
     .hr_title_bottom {
         margin-bottom: 10px;
     }
@@ -207,5 +320,5 @@
         color: rgb(65, 65, 65);
         background-color: rgba(200, 200, 200, 0.75);
     }
-</style>
+</style-->
 {% endblock %}

@@ -1,39 +1,79 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
 <style>
-  div.author {
-    margin: auto;
-  }
+    .login {
+        margin: auto;
+        width: 80%;
+    }
+    
+    .login_h1 {
+        color: #fdfdfd;
+        font-size: 3em;
+        font-weight: 600;
+    }
+    
+    .login_hr {
+        width: 23%;
+        background: #fff;
+    }
+    
+    input[name='username'],
+    input[name='password'] {
+        width: 50%;
+        padding: 10px;
+        font-size: 1em;
+        font-weight: 600;
+        color: #ddd;
+        background: rgb(30, 30, 30);
+        border: none;
+        box-shadow: inset 0 0 4px 1px #000;
+    }
+    
+    input:focus {
+        outline: none;
+    }
+    
+    .login_submit {
+        border: none;
+        background: rgb(20, 20, 20);
+        padding: 10px;
+        box-shadow: inset 0 0 4px 1px #000;
+        transition: .5s;
+        color: #fdfdfd;
+        font-weight: 700;
+    }
+    
+    .login_submit:hover {
+        box-shadow: inset 0 0 4px 2px #000;
+    }
 </style>
-
-{% block content %}
 
 <div class='login author col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6'>
 
-  <h1 class='login_h1'>Login</h1>
-    
-  {% if form.errors %}
+    <h1 class='login_h1'>Login</h1>
+    <hr class='login_hr' size='10px'> {% if form.errors %}
     <p>Ничё не получается =(</p>
-  {% endif %}
+    {% endif %}
 
-  <form action="" method="POST" id='form_login'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit'>Войти</button>
-  </form>
+    <form action="" method="POST" id='form_login'>
+        {% csrf_token %} {{ form.as_p }}
+        <button type='submit' class='login_submit'>Войти</button>
+    </form>
 </div>
-
 <script>
-  function login_placholder(){
-    let el = document.getElementById('form_login');
+    function login_placholder() {
+        let el = document.getElementById('form_login');
 
-    let el1 = el.getElementsByTagName('input')[1];
-    let el2 = el.getElementsByTagName('input')[2];
+        el.getElementsByTagName('label')[1].remove();
+        el.getElementsByTagName('label')[0].remove();
 
-    el1.setAttribute('placeholder', 'Ник');
-    el2.setAttribute('placeholder', 'Пароль');
-  }
-  login_placholder()
+        let el1 = el.getElementsByTagName('input')[1];
+        let el2 = el.getElementsByTagName('input')[2];
+
+        el1.setAttribute('placeholder', 'Ник');
+        el2.setAttribute('placeholder', 'Пароль');
+    }
+    login_placholder()
 </script>
 
 {% endblock %}

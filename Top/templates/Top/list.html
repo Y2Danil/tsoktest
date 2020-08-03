@@ -1,33 +1,73 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <style>
-  .No_article_h1 {
-    font-weight: 900;
-    font-size: 4em;
-    color: rgba(0, 255, 234, 0.733);
-    text-align: center;
-  }
+    .No_article_h1 {
+        font-weight: 900;
+        font-size: 4em;
+        color: rgba(0, 255, 234, 0.733);
+        text-align: center;
+    }
+    
+    .a_Article {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .Article {
+        padding: 0 !important;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        background: rgb(15, 15, 15);
+        box-shadow: 0 2px 3px 5px #090909;
+    }
+    
+    .article_img {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .article_title a {
+        color: #fdfdfd;
+        font-size: 1.5em;
+    }
+    
+    .article_pub_date {
+        color: #777;
+    }
+    
+    .article_rubric a {
+        color: #fdfdfd;
+        font-size: 1em;
+    }
+    
+    @media (max-width: 992px) {
+        .Article {
+            margin: auto !important;
+            margin-bottom: 20px !important;
+        }
+    }
+    
+    @media screen and (min-width: 992px) {
+        .Article {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+    }
 </style>
 
-  <section class='row'>
-  {% if Articles %}
-    {% for Article in Articles %}
-          <a href='{% url "blog:detail" Article.id %}'>
-            <article class='Article col-10 col-sm-9 col-md-10 col-lg-5 col-xl-3'>
-              <div clas='scale div_img pr-0'>
-                <img src="{{ Article.image.url }}" class='article_img scale col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-              </div>
-              <h2 class='article_title'><a href='{% url "blog:detail" Article.id %}' class='article_title'>{{ Article.title }}</a></h2>
-              <p class='article_pub_date'>{{ Article.published_date|date:"d.m.Y" }}</p>
-              <p class='article_rubric'><a href="#">Рубрика: {{ Article.rubric.name }}</a></p>
-            </article>
-          </a>
-    {% endfor %}
-  {% else %}
+<section class='row'>
+    {% if Articles %} {% for Article in Articles %}
+    <article class="Article col-10 col-sm-9 col-md-10 col-lg-5 col-xl-3">
+        <div clas='scale div_img pr-0 col-12'>
+            <img src="{{ Article.image.url }}" class='article_img scale col-12'>
+        </div>
+        <div class='Article_content'>
+            <h2 class='article_title'><a href='{% url "blog:detail" Article.id %}' class='article_title'>{{ Article.title }}</a></h2>
+            <p class='article_pub_date'>{{ Article.published_date|date:"d.m.Y" }}</p>
+            <p class='article_rubric'><a href="#">Рубрика: {{ Article.rubric.name }}</a></p>
+        </div>
+    </article>
+    {% endfor %} {% else %}
     <h1 class='No_article_h1 display-1'>Статьи не найдены =(((</h1>
-  {% endif %}
-  </section>
-
-{% endblock %}
+    {% endif %} {% endblock %}
+</section>
