@@ -48,7 +48,7 @@
                             </li>
                             {% if user.is_superuser %}
                             <li class="nav-item rubric_header admin">
-                                <a href="{% url 'admin:index' %}" class='nav-link'>Админка</a>
+                                <a href="{% url 'admin:index' %}" class='nav-link admin_link'>Админка</a>
                             </li>
                             {% endif %}
                             <li class="nav-item rubric_header">
@@ -739,6 +739,11 @@
             color: #898989 !important;
         }
         
+        .admin a:hover {
+            color: rgb(255, 217, 0) !important;
+            text-shadow: 0 0 3px #ffd9009a;
+        }
+        
         .dropdown-toggle {
             border: none;
             outline: none;
@@ -750,6 +755,8 @@
         
         .dropdown-toggle:focus {
             outline: none;
+            color: #898989;
+            text-shadow: 0 0 3px #8989899d;
         }
         
         .dropdown-menu {
@@ -757,15 +764,17 @@
         }
         
         .dropdown-item {
-            color: #cdcdcd;
             font-weight: 700;
             padding: 0;
             padding-left: 15px;
+            color: #999;
+            transition: .3s;
         }
         
         .dropdown-item:hover {
+            color: #00a72a !important;
+            text-shadow: 0 0 5px #00a72ab9;
             background: rgb(10, 10, 10) !important;
-            color: #898989 !important;
         }
         
         .block-content {
@@ -783,6 +792,19 @@
             text-align: center;
             font-size: .8em;
             margin: auto;
+        }
+        
+        @media (max-width: 992px) {
+            .nav-link {
+                font-size: 1.5em;
+            }
+            .nav_item-dropdown button {
+                font-size: 1.5em;
+                margin-top: 5px;
+            }
+            .dropdown-item {
+                font-size: 1.5em;
+            }
         }
         
         @media screen and (min-width: 992px) {
