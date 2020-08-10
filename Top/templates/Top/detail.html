@@ -6,8 +6,16 @@
     <h1 class='Article_title col-12'>{{ Article.title }}</h1>
     <hr class='hr_title_bottom'> {% if Article.image %}
     <div class='detail_width_img col-12'>
-        <img src="{{ Article.image.url }}" alt="Картинка" class='img_detail col-12 col-md-10 col-lg-9'>
+        <img src="{{ Article.image.url }}" alt="Картинка" class='img_detail col-12 col-md-12 col-lg-10 col-xl-9'>
     </div>
+    <script>
+        function windowROW() {
+            if (window.matchMedia('(min-width: 992px)').matches) {
+
+            }
+        }
+        windowROW()
+    </script>
     {% else %}
     <div style='max-width: 650px; ' class='detail_width_img'></div>
     {% endif %}
@@ -96,9 +104,9 @@
         font-size: .9em;
     }
     
-    .detail_width_img {
-        background: #000;
-        background-blend-mode: overlay;
+    .img_detail {
+        /*background-blend-mode: overlay;*/
+        margin: auto;
     }
     
     .detail_width_img img {
@@ -157,10 +165,11 @@
         color: rgb(145, 255, 0);
         animation: shadow_a 6s infinite;
         text-shadow: 0 0 5px rgba(145, 255, 0, 0.6);
+        text-decoration: underline;
     }
     
     .please_login:hover {
-        color: rgb(145, 255, 0);
+        color: rgb(100, 177, 0);
     }
     
     .comment_gend {
