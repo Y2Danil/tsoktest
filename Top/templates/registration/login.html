@@ -57,11 +57,11 @@
 
     <form action="" method="POST" id='form_login'>
         {% csrf_token %} {{ form.as_p }}
-        <button type='submit' class='login_submit'>Войти</button>
+        <button type='submit' class='login_submit' id='login_submit'>Войти</button>
     </form>
 </div>
 <script>
-    function login_placholder() {
+    function placeholder() {
         let el = document.getElementById('form_login');
 
         el.getElementsByTagName('label')[1].remove();
@@ -72,8 +72,54 @@
 
         el1.setAttribute('placeholder', 'Ник');
         el2.setAttribute('placeholder', 'Пароль');
+
     }
-    login_placholder()
+    placeholder()
+
+    function regist() {
+        let el = document.createElement('span');
+        let input = document.getElementById('id_username');
+        el.innerHTML = `
+            <br>Не акка? <a href='{% url 'blog:register' %}'>Создай!</a>
+            <style>
+                span {
+                    color: #fdfdfd;
+                }
+                a {
+                    color: rgb(6, 190, 0);
+                }
+                a:hover {
+                    color: rgb(6, 190, 0);
+                    text-decoration: underline;
+                }
+            </style>
+        `;
+
+        input.after(el);
+    }
+    regist()
+
+    function modile() {
+        if (window.matchMedia('(max-width: 992px)').matches) {
+            let el1 = document.getElementById('id_username');
+            el1.style.cssText = `
+                width: 360px;
+                height: 50px;
+            `;
+            let el2 = document.getElementById('id_password');
+            el2.style.cssText = `
+                width: 360px;
+                height: 50px;
+            `;
+            let button = document.getElementById('login_submit');
+            button.style.cssText = `
+                padding: 13px;
+                padding-right: 20px;
+                padding-left: 20px;
+            `;
+        }
+    }
+    modile()
 </script>
 
 {% endblock %}
