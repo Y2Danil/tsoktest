@@ -20,14 +20,26 @@
                 <nav class="navbar navbar-expand-lg header">
                     <h1 class='TSOK'>
                         <a href="{% url 'blog:index' %}">
-              TOP SLUTS OF <div class='Kamch'>KAMCHATKA</div>
-            </a>
+                            TOP SLUTS OF <div class='Kamch'>KAMCHATKA</div>
+                        </a>
                     </h1>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-list" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                      <svg width="2em" height="2em" id='navbar-toggler-button' viewBox="0 0 16 16" class="bi bi-list" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                       </svg>
-          </button>
+                    </button>
+                    <script>
+                        if (window.matchMedia("(max-width: 992px)").matches) {
+                            let el = document.getElementById('navbar-toggler-button');
+
+                            el.removeAttribute('width');
+                            el.removeAttribute('height');
+
+                            el.setAttribute('width', '2.5em');
+                            el.setAttribute('height', '2.5em');
+                        }
+                    </script>
+
 
                     <div class="collapse navbar-collapse" id="navbar">
                         <!-- Пункты вертикального меню -->
@@ -44,6 +56,17 @@
                                           </svg>
                                         </a>
                                       </button>
+                                    <script>
+                                        if (window.matchMedia("(max-width: 992px)").matches) {
+                                            let el = document.getElementById('glaz_svg');
+
+                                            el.removeAttribute('width');
+                                            el.removeAttribute('height');
+
+                                            el.setAttribute('width', '2.1em');
+                                            el.setAttribute('height', '2.1em');
+                                        }
+                                    </script>
                                 </form>
                             </li>
                             {% if user.is_superuser %}
@@ -784,6 +807,12 @@
         
         .footer {
             background: rgb(20, 20, 20);
+            position: relative;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            margin-top: 10em;
         }
         
         .footer h6 {
@@ -794,7 +823,14 @@
         
         @media (max-width: 992px) {
             .nav-link {
-                font-size: 1.5em;
+                font-size: 1.7em;
+            }
+            .form_poisck input {
+                padding: 3px;
+                height: 40px;
+            }
+            .form_poisck input::placeholder {
+                font-size: 1.09em;
             }
             .nav_item-dropdown button {
                 font-size: 1.5em;
