@@ -53,8 +53,10 @@
 
     <h1 class='login_h1'>Login</h1>
     <hr class='login_hr' size='10px'> {% if form.errors %}
-    <p>Ничё не получается =(</p>
-    {% endif %}
+    <video width="480">
+        <source src='/Top/static/image/niger_grob.mp4' type="video/mp4">
+        <source src='/Top/static/image/niger_grob.ogv' type="video/ogv">
+    </video> {% endif %}
 
     <form action="" method="POST" id='form_login'>
         {% csrf_token %} {{ form.as_p }}
