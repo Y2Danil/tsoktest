@@ -7,6 +7,12 @@
         text-align: center;
     }
     
+    .rub_name {
+        font-size: 1.7em;
+        color: #ddd;
+        margin-left: 3%;
+    }
+    
     .a_Article {
         padding: 0 !important;
         margin: 0 !important;
@@ -39,6 +45,17 @@
         color: #777;
     }
     
+    .likes_in_list {
+        margin-left: 15px;
+        color: #fdfdfd;
+    }
+    
+    .likes_in_list>span {
+        font-size: 1.2em;
+        position: relative;
+        top: 2px;
+    }
+    
     .article_rubric {
         color: #ddd;
     }
@@ -56,7 +73,7 @@
             margin-bottom: 20px !important;
         }
         .article_title {
-            font-size: 2.2em;
+            font-size: 2.7em;
         }
         .article_pub_date {
             font-size: 1.3em;
@@ -74,17 +91,25 @@
     }
 </style>
 
-<p style='margin-bottom: -5px;'>Рубрика - <span style='font-weight: 600;'>{{ current_rubric }}</span></p>
+<p style='margin-bottom: -5px;' class='rub_name'>Рубрика - <span style='font-weight: 600;'>{{ current_rubric }}</span></p>
 <hr class='by_rubric_hr'>
 <section class='row'>
     {% if Articles %} {% for Article in Articles %}
-    <article class="Article col-10 col-sm-9 col-md-10 col-lg-5 col-xl-3">
+    <article class="Article col-10 col-sm-11 col-md-11 col-lg-5 col-xl-3">
         <div clas='scale div_img pr-0 col-12'>
             <img src="{{ Article.image.url }}" class='article_img scale col-12'>
         </div>
         <div class='Article_content'>
             <h2 class='article_title'><a href='{% url "blog:detail" Article.id %}' class='article_title'>{{ Article.title }}</a></h2>
-            <p class='article_pub_date'>{{ Article.published_date|date:"d.m.Y" }}</p>
+            <p class='article_pub_date'>
+                {{ Article.published_date|date:"d.m.Y" }}
+                <span class='likes_in_list'>
+                    <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-heart svg_like" fill="#fdfdfd" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                    </svg>
+                    <span>{{ Article.likes }}</span>
+                </span>
+            </p>
             <p class='article_rubric'>Рубрика:
                 <a href="#">{{ Article.rubric.name }}</a>
             </p>
