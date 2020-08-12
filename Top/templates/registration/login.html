@@ -53,9 +53,9 @@
 
     <h1 class='login_h1'>Login</h1>
     <hr class='login_hr' size='10px'> {% if form.errors %}
-    <video width="480">
-        <source src='/Top/static/image/niger_grob.mp4' type="video/mp4">
-        <source src='/Top/static/image/niger_grob.ogv' type="video/ogv">
+    <video width="480" autoplay>
+        <source src='https://github.com/Y2Danil/tsoktest/blob/master/Top/static/video/niger_grob.mp4' type="video/mp4">
+        <source src='https://github.com/Y2Danil/tsoktest/blob/master/Top/static/video/niger_grob.ogv' type="video/ogv">
     </video> {% endif %}
 
     <form action="" method="POST" id='form_login'>
@@ -83,7 +83,7 @@
         let el = document.createElement('span');
         let input = document.getElementById('id_username');
         el.innerHTML = `
-            <br>Не акка? <a href='{% url 'blog:register' %}'>Создай!</a>
+            <br>Нет акка? <a href='{% url 'blog:register' %}'>Создай!</a>
             <style>
                 span {
                     color: #fdfdfd;
