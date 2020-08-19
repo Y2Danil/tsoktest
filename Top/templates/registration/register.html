@@ -18,6 +18,12 @@
         background: #fff;
     }
     
+    .errorform {
+        color: #aaa;
+        font-size: 1em;
+        font-weight: 800;
+    }
+    
     input[name='username'],
     input[name='password1'],
     input[name='password2'] {
@@ -53,9 +59,24 @@
 <div class='register col-12 col-sm-10 col-md-10 col-lg-9 col-xl-6' style='margin: auto;'>
     <h1 class='h1_reg'>Регестрация</h1>
     <hr class='reg_hr' size='10px'>
+    <!---->
+    {% if form.errors %}
+    <p class='errorform'>ТЫ БЕЗНОДЕЖЕН! ДАЖЕ <a style='color: red; font-weight: 900;'>ЗАРЕГЕСТРИРОВАТЬСЯ</a> НОРМАЛЬНО НЕ МОЖЕШЬ!</p>{% endif %}
     <form class='form_register' action="" method="POST" id='form_register'>
         {% csrf_token %} {{ form.as_p }}
         <button type='submit' class='reg_submit'>Зарегестрироваться</button>
+        <script>
+            function del_error_reg() {
+                try {
+                    let el = document.getElementById('form_register');
+                    let ul = el.getElementsByTagName('ul')[0];
+                    // ul.remove();
+                } catch {
+                    //pass
+                }
+            }
+            del_error_reg()
+        </script>
     </form>
 </div>
 
@@ -63,10 +84,14 @@
     function del_span_reg() {
         let el = document.getElementsByTagName('span');
         let form_reg_ul = document.getElementById('form_register');
-        let form_ul = form_reg_ul.getElementsByTagName('ul')[0];
         el[0].remove();
         el[1].remove();
-        form_ul.remove();
+        try {
+            let form_ul = form_reg_ul.getElementsByTagName('ul')[0];
+            form_ul.remove();
+        } catch {
+            //pass
+        }
 
         let label = document.getElementsByTagName('label');
         label[2].remove();

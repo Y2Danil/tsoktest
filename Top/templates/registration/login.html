@@ -18,9 +18,14 @@
         background: #fff;
     }
     
+    .errorform {
+        color: #aaa;
+        font-size: 1em;
+        font-weight: 900;
+    }
+    
     input[name='username'],
     input[name='password'] {
-        width: 50%;
         padding: 10px;
         font-size: 1em;
         font-weight: 600;
@@ -47,19 +52,46 @@
     .login_submit:hover {
         box-shadow: inset 0 0 4px 2px #000;
     }
+    
+    @media screen and (min-width: 992px) {
+        input[name='username'],
+        input[name='password'] {
+            width: 50%;
+        }
+    }
+    
+    @media (max-width: 992px) {
+        input[name='username'],
+        input[name='password'] {
+            width: 80% !important;
+            height: 55px !important;
+        }
+    }
 </style>
 
 <div class='login author col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6'>
 
     <h1 class='login_h1'>Login</h1>
-    <hr class='login_hr' size='10px'> {% if form.errors %}
-    <video width="480" autoplay>
-        <source src='https://github.com/Y2Danil/tsoktest/blob/ab386df53a185122755861051cf4d2277bd6344d/Top/static/video/niger_grob.mp4' type="video/mp4">
-        <source src='https://github.com/Y2Danil/tsoktest/blob/ab386df53a185122755861051cf4d2277bd6344d/Top/static/video/niger_grob.ogv' type="video/ogv">
-    </video> {% endif %}
-
+    <hr class='login_hr' size='10px'>
+    <!---->
+    {% if form.errors %}
+    <p class='errorform'>
+        ТЫ СЕРЬЕЗНО НЕ МОЖЕШЬ ВВЕСТИ ПРАВЕЛЬНЫЕ ДАННЫЕ!? НАДЕЮСЬ ТЫ ХОТЬ <a href="{% url 'blog:register' %}">ЗАРЕГЕСТРИРОВАЛСЯ</a> ПЕРЕД ЭТИМ
+    </p>
+    {% endif %}
     <form action="" method="POST" id='form_login'>
         {% csrf_token %} {{ form.as_p }}
+        <script>
+            function del_error() {
+                try {
+                    let elem = document.querySelector('.errorlist');
+                    elem.remove();
+                } catch {
+                    //pass
+                }
+            }
+            del_error()
+        </script>
         <button type='submit' class='login_submit' id='login_submit'>Войти</button>
     </form>
 </div>
