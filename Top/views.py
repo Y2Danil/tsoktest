@@ -26,9 +26,13 @@ def index(request):
     return render(request, 'Top/404.html')
 
 def poisck(request):
-  title_poisck = request.POST['poisck']
   try:
-    Articles = Article.objects.filter(title = title_poisck)
+    title_poisck = request.POST['poisck']
+    if int(title_poisck):
+      Articles = Article.objects.filter(id = title_poisck) 
+    else:
+      Articles = Article.objects.filter(title = title_poisck)
+      
     Rubrics = Rubric.objects.order_by('-id')
     
     return render(request, 'Top/list.html', {"Articles": Articles, 'Rubrics': Rubrics})
