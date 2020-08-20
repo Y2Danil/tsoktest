@@ -20,7 +20,8 @@
                 <nav class="navbar navbar-expand-lg header">
                     <h1 class='TSOK'>
                         <a href="{% url 'blog:index' %}">
-                            TOP SLUTS OF <div class='Kamch'>KAMCHATKA</div>
+                            <div>TOP SLUTS OF</div>
+                            <div class='Kamch'>KAMCHATKA</div>
                         </a>
                     </h1>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -723,6 +724,10 @@
             text-decoration: none;
         }
         
+        a:hover {
+            text-decoration: none;
+        }
+        
         .container-fluid {
             margin: 0;
             padding: 0;
@@ -738,7 +743,6 @@
             color: #fff;
             font-weight: 700;
             font-size: 1.15em;
-            max-width: 30%;
         }
         
         .poisck_input {
@@ -838,6 +842,10 @@
         }
         
         @media screen and (min-width: 992px) {
+            .TSOK {
+                font-size: 2.4em;
+                width: 440px;
+            }
             ul.navbar-nav {
                 text-align: right;
                 position: relative;
