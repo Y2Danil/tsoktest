@@ -53,6 +53,33 @@
     
     .reg_submit:hover {
         box-shadow: inset 0 0 4px 2px #000;
+        background: rgb(19, 19, 19);
+    }
+    
+    @media screen and (min-width: 992px) {
+        input[name='username'],
+        input[name='password1'],
+        input[name='password2'] {
+            width: 50%;
+        }
+    }
+    
+    @media (max-width: 992px) {
+        .register {
+            width: 90%;
+        }
+        input[name='username'],
+        input[name='password1'],
+        input[name='password2'] {
+            width: 100% !important;
+            height: 55px !important;
+            font-size: 1.2em;
+        }
+        .reg_submit {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+        }
     }
 </style>
 
