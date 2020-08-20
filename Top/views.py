@@ -28,10 +28,7 @@ def index(request):
 def poisck(request):
   try:
     title_poisck = request.POST['poisck']
-    if int(title_poisck):
-      Articles = Article.objects.filter(id = title_poisck) 
-    else:
-      Articles = Article.objects.filter(title = title_poisck)
+    Articles = Article.objects.filter(title = title_poisck)
       
     Rubrics = Rubric.objects.order_by('-id')
     
