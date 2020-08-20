@@ -163,6 +163,21 @@
                 padding-left: 20px;
             `;
         }
+        try {
+            if (/Android|webOS|iPhone|iPod|Windows Phone/i.test(navigator.userAgent)) {
+                let el = document.getElementById('register');
+                el.innerHTML = `
+                    <style>
+                        input[name='username'],
+                        input[name='password'] {
+                            font-size: 1.5em;
+                        }
+                    </style>
+                `
+            }
+        } catch {
+            console.log('ErrorХЗкакая: ошибка короче');
+        }
     }
     modile()
 </script>

@@ -149,5 +149,25 @@
         el3.setAttribute('placeholder', 'Потвердить пароль');
     }
     append_placholder()
+
+    function mobile_check() {
+        try {
+            if (/Android|webOS|iPhone|iPod|Windows Phone/i.test(navigator.userAgent)) {
+                let el = document.getElementById('register');
+                el.innerHTML = `
+                    <style>
+                        input[name='username'],
+                        input[name='password1'],
+                        input[name='password2'] {
+                            font-size: 1.5em;
+                        }
+                    </style>
+                `
+            }
+        } catch {
+            console.log('ErrorХЗкакая: ошибка короче');
+        }
+    }
+    mobile_check()
 </script>
 {% endblock %}
