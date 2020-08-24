@@ -14,7 +14,6 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 # SECURITY WARNING: keep the secret key used in production secret!
 file = open('token.txt', 'rb')
 SECRET_KEY = file.read()
-file.close()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
