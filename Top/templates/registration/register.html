@@ -153,17 +153,18 @@
     function mobile_check() {
         if (/Android|webOS|iPhone|iPod|Windows Phone/i.test(navigator.userAgent)) {
             let el = document.getElementById('register');
-            el.innerHTML = `
+            el.innerHTML.after(`
                     <style>
                         input[name='username'],
                         input[name='password1'],
                         input[name='password2'] {
-                            font-size: 1.5em;
+                            font-size: 1.5em !important;
+                            box-shadow: inset 0 0 4px 1px #000; 
                         }
                     </style>
-                `
+                `);
         }
     }
-    mobile_check()
+    mobile_check();
 </script>
 {% endblock %}
