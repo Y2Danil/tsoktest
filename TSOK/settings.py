@@ -12,8 +12,7 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = '3n7s@tna+wx1rhua!_*^+9^$^ir&(&5djdltt2je+jqt=1-44='
-file = open('token.txt', 'r')
+file = open('token.txt', 'rb')
 SECRET_KEY = file.read()
 file.close()
 
