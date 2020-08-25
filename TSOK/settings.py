@@ -1,6 +1,5 @@
 import os
 import sys
-import config
 # python3 manage.py runserver
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -14,7 +13,7 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.SECRET_KEY
+SECRET_KEY = '3n7s@tna+wx1rhua!_*^+9^$^ir&(&5djdltt2je+jqt=1-44='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
